@@ -1,0 +1,14 @@
+# garaga/garaga.toml
+# Example Garaga config to compile a Noir program to a Cairo verifier for Starknet.
+# NOTE: This is an example. Adjust paths & flags to your garaga version.
+[input]
+type = "noir"
+entry = "../noir/target/bytecode.acir"  # produced by `noir compile --output ...`
+
+[output]
+type = "cairo"
+target = "../starknet/verifier.cairo"   # output Cairo verifier
+
+[prove]
+# optional proving backend settings
+backend = "barretenberg"   # or your prover of choice
