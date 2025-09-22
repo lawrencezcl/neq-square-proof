@@ -1,0 +1,18 @@
+[sncast.sepolia]
+account = "demo_account"
+accounts-file = "~/.starknet_accounts/starknet_open_zeppelin_accounts.json"
+url = "https://starknet-sepolia.public.blastapi.io/rpc/v0_7"
+
+[sncast.mainnet]
+account = "demo_account"
+accounts-file = "~/.starknet_accounts/starknet_open_zeppelin_accounts.json"
+url = "https://starknet-mainnet.public.blastapi.io/rpc/v0_7"
+
+[sncast.default]
+account = "demo_account"
+
+# Default profile
+[sncast]
+account = "demo_account"
+accounts-file = "~/.starknet_accounts/starknet_open_zeppelin_accounts.json"
+url = "https://starknet-sepolia.public.blastapi.io/rpc/v0_7"

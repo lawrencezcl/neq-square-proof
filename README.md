@@ -3,6 +3,16 @@
 This repository demonstrates the recommended flow using **Noir** (to express the relation) and **Garaga** (to compile ACIR → Cairo verifier):
 `Noir (x,y,w) -> ACIR -> Garaga -> Cairo verifier -> Deploy to Starknet`
 
+## 🚀 Deployment Status: LIVE ON STARKNET SEPOLIA
+
+The verifier has been successfully deployed to Starknet Sepolia testnet:
+
+- **Contract Address**: `0x075af333b97db36d5c9a374f7f35277e3580310a3d68b3d7d95adc9946df01a6`
+- **Class Hash**: `0x00aa227238ac0f4cf98b67314aaa8267ff92aa8dec8035ea2a6d686912f3938f`
+- **Explorer Link**: [View on Starkscan](https://sepolia.starkscan.co/contract/0x075af333b97db36d5c9a374f7f35277e3580310a3d68b3d7d95adc9946df01a6)
+
+See [deployment_success.md](./deployment_success.md) for complete deployment details.
+
 ## Files in this repo
 - `noir/src/neq_square.nr` — Noir program (public inputs x,y; private w)
 - `garaga/garaga.toml` — example Garaga config (edit as needed)
@@ -45,12 +55,25 @@ Use the verifier artifacts produced by Garaga to verify the proof locally (some 
 After `garaga compile` you should have `starknet/verifier.cairo`.
 Deploy with the Starknet CLI / account:
 ```bash
-# Example (adjust network name)
-starknet deploy --contract starknet/verifier.cairo --network alpha-goerli
+# Deploy account
+sncast account deploy --network sepolia --name demo_account
+
+# Declare contract
+sncast declare --contract-name NeqSquareVerifier --network sepolia
+
+# Deploy contract instance
+sncast deploy --class-hash 0x00aa227238ac0f4cf98b67314aaa8267ff92aa8dec8035ea2a6d686912f3938f --network sepolia
 ```
 
 ### 6) Call the verifier on-chain
-Use `starknet invoke` or write a small script to call the verifier entrypoint with the proof bytes/public inputs and observe verification success.
+Use `sncast` to call the verifier functions:
+```bash
+# Get circuit info
+sncast call --contract-address 0x075af333b97db36d5c9a374f7f35277e3580310a3d68b3d7d95adc9946df01a6 --function get_circuit_info --network sepolia
+
+# Verify a proof (example)
+sncast invoke --contract-address 0x075af333b97db36d5c9a374f7f35277e3580310a3d68b3d7d95adc9946df01a6 --function verify_proof --calldata [proof_array] [public_inputs] --network sepolia
+```
 
 ## Example values (you can use these to test)
 - public: x = 10, y = 3

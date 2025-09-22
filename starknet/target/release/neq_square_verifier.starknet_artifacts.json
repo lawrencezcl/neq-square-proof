@@ -1,0 +1,1 @@
+{"version":1,"contracts":[{"id":"h5v2dbkdfs25q","package_name":"neq_square_verifier","contract_name":"NeqSquareVerifier","module_path":"neq_square_verifier::verifier::NeqSquareVerifier","artifacts":{"sierra":"neq_square_verifier_NeqSquareVerifier.contract_class.json","casm":"neq_square_verifier_NeqSquareVerifier.compiled_contract_class.json"}}]}
